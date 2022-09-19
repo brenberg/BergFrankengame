@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a642970f25d34043b7123b81668e6a6, type: 3}
   m_Name: flingStrength
   m_EditorClassIdentifier: 
-  initValue: 200
-  value: 200
+  initValue: 300
+  value: 300

@@ -11,11 +11,16 @@ public class ShootScript : MonoBehaviour
     public bool canFire;
     private float timer;
     public float timeBetweenFiring;
+    public Transform battery;
+    public GameObject gameOverText;
+    public GameObject retryButton;
 
     // Start is called before the first frame update
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
+        gameOverText.SetActive(false);
+        retryButton.SetActive(false);
     }
 
     // Update is called once per frame
@@ -29,6 +34,8 @@ public class ShootScript : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
 
+        float dist = Vector3.Distance(battery.position, transform.position);
+
         if (!canFire)
         {
             timer += Time.deltaTime;
@@ -39,17 +46,17 @@ public class ShootScript : MonoBehaviour
             }
         }
 
-        //if (Input.GetMouseButton(0) && canFire)
-        //{
-        //    canFire = false;
-        //    Instantiate(bullet, bulletTransform.position, Quaternion.identity);
-        //}
-
-        if (Input.GetKey(KeyCode.Space) && canFire)
+        if (Input.GetKey(KeyCode.Space) && canFire && dist <= 5)
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
 
+        if(battery.localScale.y <= 0.01f)
+        {
+            gameOverText.SetActive(true);
+            retryButton.SetActive(true);
+            Destroy(gameObject);
+        }
     }
 }

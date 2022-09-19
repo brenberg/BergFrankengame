@@ -6,6 +6,8 @@ public class LimitedDistance : MonoBehaviour
 {
     public Transform battery;
     public float moveSpeed;
+    public GameObject enableLight;
+    public GameObject helpText;
 
     // Start is called before the first frame update
     void Start()
@@ -23,24 +25,25 @@ public class LimitedDistance : MonoBehaviour
         {
             //Within Range 
 
-            //color change
+            enableLight.SetActive(true);
+            helpText.SetActive(false);
 
             //Movement
             if (Input.GetKey(KeyCode.W))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + moveSpeed * Time.deltaTime, transform.position.z);
             }
             if (Input.GetKey(KeyCode.S))
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y - moveSpeed * Time.deltaTime, transform.position.z);
             }
             if (Input.GetKey(KeyCode.A))
             {
-                transform.position = new Vector3(transform.position.x - moveSpeed, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
             }
             if (Input.GetKey(KeyCode.D))
             {
-                transform.position = new Vector3(transform.position.x + moveSpeed, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
             }
         }
 
@@ -48,7 +51,8 @@ public class LimitedDistance : MonoBehaviour
         {
             //Out Of Range
 
-            //color change
+            enableLight.SetActive(false);
+            helpText.SetActive(true);
 
             if (Input.GetKey(KeyCode.E))
             {
