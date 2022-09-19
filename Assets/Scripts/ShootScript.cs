@@ -39,7 +39,13 @@ public class ShootScript : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButton(0) && canFire)
+        //if (Input.GetMouseButton(0) && canFire)
+        //{
+        //    canFire = false;
+        //    Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+        //}
+
+        if (Input.GetKey(KeyCode.Space) && canFire)
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
