@@ -4,24 +4,23 @@ using UnityEngine;
 
 public class BulletScript : MonoBehaviour
 {
-
     private Vector3 mousePos;
     private Camera mainCam;
     private Rigidbody2D rb;
     public float bulletSpeed;
-    // Start is called before the first frame update
+    float t;
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rb = GetComponent<Rigidbody2D>();
+        t += Time.deltaTime;
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
         Vector3 direction = mousePos - transform.position;
         rb.velocity = new Vector2(direction.x, direction.y).normalized * bulletSpeed;
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+        if(t > 5)
+        {
+            Destroy(gameObject);
+        }
     }
 }

@@ -14,6 +14,7 @@ public class ShootScript : MonoBehaviour
     public Transform battery;
     public GameObject gameOverText;
     public GameObject retryButton;
+    public float t;
 
     // Start is called before the first frame update
     void Start()
@@ -21,9 +22,9 @@ public class ShootScript : MonoBehaviour
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         gameOverText.SetActive(false);
         retryButton.SetActive(false);
+        t = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -54,9 +55,13 @@ public class ShootScript : MonoBehaviour
 
         if(battery.localScale.y <= 0.01f)
         {
-            gameOverText.SetActive(true);
-            retryButton.SetActive(true);
-            Destroy(gameObject);
+            t += Time.deltaTime;
+            if (t > 4)
+            {
+                gameOverText.SetActive(true);
+                retryButton.SetActive(true);
+                Destroy(gameObject);
+            }  
         }
     }
 }

@@ -8,6 +8,11 @@ public class ButtonScript : MonoBehaviour
 {
     public void LoadScene()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(1);
+    }
+
+    public void LoadGameScene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

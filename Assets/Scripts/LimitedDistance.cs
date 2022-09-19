@@ -9,13 +9,6 @@ public class LimitedDistance : MonoBehaviour
     public GameObject enableLight;
     public GameObject helpText;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
         float dist = Vector3.Distance(battery.position, transform.position);
@@ -24,7 +17,6 @@ public class LimitedDistance : MonoBehaviour
         if (dist <= 5)
         {
             //Within Range 
-
             enableLight.SetActive(true);
             helpText.SetActive(false);
 
@@ -46,20 +38,15 @@ public class LimitedDistance : MonoBehaviour
                 transform.position = new Vector3(transform.position.x + moveSpeed * Time.deltaTime, transform.position.y, transform.position.z);
             }
         }
-
         if (dist > 5)
         {
             //Out Of Range
-
             enableLight.SetActive(false);
             helpText.SetActive(true);
 
             if (Input.GetKey(KeyCode.E))
             {
                 //Reset Pos
-
-                //Need Prompt
-
                 transform.position = new Vector3(battery.position.x, battery.position.y + 2, transform.position.z);
             }
             if (transform.position.y > battery.position.y)

@@ -1,23 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ChargeDeplete : MonoBehaviour
 {
     public static bool charging;
+    public static bool damage;
 
-    // Start is called before the first frame update
     void Start()
     {
         charging = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //On collision
-        //Get tag
-        //charge
+        damage = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -26,6 +20,16 @@ public class ChargeDeplete : MonoBehaviour
         {
             charging = true;
         }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            damage = true;
+        }
+
+        if (collision.gameObject.CompareTag("Exit"))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -33,6 +37,11 @@ public class ChargeDeplete : MonoBehaviour
         if (collision.gameObject.CompareTag("Charger"))
         {
             charging = false;
+        }
+
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            damage = false;
         }
     }
 }

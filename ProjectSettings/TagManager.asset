@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Charger
   - Enemy
+  - Bullet
+  - Exit
   layers:
   - Default
   - TransparentFX
